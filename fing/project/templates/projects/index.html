@@ -1,0 +1,49 @@
+{% extends "projects/basic.html" %}
+{% block body %}
+<style>
+    #heart:hover{
+        color:red;
+    }
+    #clip:hover{
+        color:blue;
+    }
+</style>
+  <div class="container content-wrapper">
+    <div class="columns is-multiline">
+    {% for obj in objects %}
+      <!-- admin -->
+      <div class="column is-4-desktop is-3-widescreen is-half-tablet">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <span>{{ obj.title }}<small>(&dollar;{{ obj.price }})</small></span><br><span>
+          <small>in</small>    <strong><i>
+ <a href="{% url 'filter' obj.category.name %}" class="link">{{ obj.category }}</a></i>
+              </strong></span>
+              <span class="is-pulled-right">
+                <a href="#">
+                  <span class="tag is-default is-primary" title="Current Version">v{{ obj.version }}.0</span>
+                </a>
+                <span class="tag is-default is-info"><i class="fas fa-heart" id="heart"></i></span>
+                <span class="tag is-default is-info"><i class="fas fa-clipboard" id="clip"></i></span>
+              </span>
+            </p>
+          </header>
+          <div class="card-content">
+            <figure class="image">
+              <a href="{% url 'details' obj.id %}"><img src="{{ obj.imageUrl }}" alt="Admin template screenshot" /></a>
+            </figure>
+          </div>
+          <footer class="card-footer">
+            <a href="{% url 'details' obj.id %}" class="card-footer-item"><i class="fas fa-search"></i> Preview</a>
+            <a href="http://localhost:8000/media/{{ obj.file }}"
+              class="card-footer-item"><i class="fas fa-cart-plus"></i> &nbsp;Buy</a>
+          </footer>
+        </div>
+      </div>
+      <!-- band -->
+  {% empty %}
+    <div class="alert alert-info text-center p-4 my-4 mx-2">No items Available</div>
+    {% endfor %}
+</div>
+{% endblock %}

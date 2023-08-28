@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Auctions{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'auctions/bootstrap.min.css' %}">
+    <script src="{% static 'auctions/jquery.min.js' %}"></script>
+    <script src="{% static 'auctions/bootstrap.min.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap" rel="stylesheet">
+    <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+</head>
+
+{% block body %}
+<div class="container p-4 text-center" style="max-width: 600px;">
+
+    {% if message %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+
+    <div class="card inout">
+        <div class="card-body m-4">
+            <h2 class="card-title">Register</h2>
+
+            <form action="{% url 'register' %}" method="post" class="card-text mb-3">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+                </div>
+                <input class="gradient-button register" type="submit" value="Register">
+            </form>
+
+            Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

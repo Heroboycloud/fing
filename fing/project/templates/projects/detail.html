@@ -1,0 +1,142 @@
+{% extends "projects/basic.html" %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+  <script async type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
+<!--- the Code -->
+    <div class="tabs is-boxed is-centered main-menu" id="nav">
+                <ul>
+                    <li data-target="pane-1" id="1">
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-image"></i></span>
+                            <span>Pictures</span>
+                        </a>
+                    </li>
+                    <li data-target="pane-2" id="2" class="is-active">
+                        <a>
+                            <span class="icon is-small"><i class="fab fa-empire"></i></span>
+                            <span>Details</span>
+                        </a>
+                    </li>
+                    <li data-target="pane-3" id="3">
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-user"></i></span>
+                            <span>Team</span>
+                        </a>
+                    </li>
+                    <li data-target="pane-4" id="4">
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-code"></i></span>
+                            <span>Others</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane" id="pane-1">
+                    <figure>
+                        <img src="{{ item.imageUrl }}" alt="photo of Project" class="cent">
+                    </figure>
+                    <figure>
+                        <img src="https://source.unsplash.com/wPMvPMD9KBI/800x600" alt="photo2" class="cent">
+                    </figure>
+                </div>
+                <div class="tab-pane" id="pane-3">
+                    <div class="columns">
+                        <div class="container">
+                            <div class="columns">
+                                <div class="column">
+                                    <article class="media">
+                                        <div class="media-left">
+                                            <i class="fab fa-github-square fa-4x"></i>
+                                        </div>
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <p>
+                                                    <strong>Dominic Ipsum</strong>
+                                                    <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="media">
+                                        <div class="media-left">
+                                            <i class="fab fa-empire fa-4x"></i>
+                                        </div>
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <p>
+                                                    <strong>Cassie Ipsum</strong>
+                                                    <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="column">
+                                    <article class="media">
+                                        <div class="media-left">
+                                            <i class="fab fa-ravelry fa-4x"></i>
+                                        </div>
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <p>
+                                                    <strong>Avery Ipsum</strong>
+                                                    <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="media">
+                                        <div class="media-left">
+                                            <i class="fab fa-github-alt fa-4x"></i>
+                                        </div>
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <p>
+                                                    <strong>io Ipsum</strong>
+                                                    <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis. 鈺�
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="pane-4">
+                    <div class="columns is-centered">
+                        <div class="column is-three-quarters">
+                            <div class="embed-container image">
+                                <img src="{{ item.imageUrl }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane is-active" id="pane-2">
+                    <div class="content">
+                        <h1>
+{{ item.title }}
+                        </h1>
+                        <p>created By <strong>
+                        {{ item.user }}</strong><span>
+                            and {{ item.contributor }}
+                        </span><sup><a>[1]</a></sup><br />Recent Version:{{ item.version }}</p>
+                        <h2>Description</h2>
+                        <p>
+                            Published on <small> {{ item.date }} </small><strong>Category:</strong>
+ <a href="{% url 'filter' item.category.name %}" class="link">{{ item.category }}</a><br />{{ item.description }}</p>
+               <strong>
+                   Price: <small>&dollar;{{ item.price }}</small>
+               </strong>     
+                        </ul>
+                        <h3>Documentation</h3>
+                        <p>
+                            {{ item.document }}</p>
+                    <blockquote>{{ item.code }}</blockquote>
+                    </p>
+                    <p>
+		<a href="{{ item.file }}"><button type="submit" class="button is-link is-fullwidth has-text-weight-small is-small"><i class="fas fa-download"></i> Download now</button></a>
+                    </p>
+                    {% endblock %}
